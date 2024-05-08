@@ -26,6 +26,26 @@ const findUserById = async (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
         res.status(404).send(JSON.stringify({ message: "Пользователь не найден" }));
   }
-}; 
+};
 
-module.exports = findAllUsers, createUser, findUserById; 
+const updateUser = async (req, res, next) => {
+  try {
+    req.user = await users.findByIdAndUpdate(req.params.id, req.body);
+    next();
+  } catch (error) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(400).send(JSON.stringify({ message: "Ошибка обновления пользователя" }));
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    req.user = await users.findByIdAndDelete(req.params.id);
+    next();
+  } catch (error) {
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Ошибка удаления пользователя" }));
+  }
+};
+
+module.exports = findAllUsers, createUser, findUserById, updateUser, deleteUser; 
