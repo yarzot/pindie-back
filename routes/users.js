@@ -9,17 +9,23 @@ const updateUser = require('../middlewares/users');
 const sendUserUpdated = require('../controllers/users');
 const deleteUser = require('../middlewares/users');
 const sendUserDeleted = require('../controllers/users');
+const checkIsUserExists = require('../middlewares/users');
+const checkEmptyNameAndEmailAndPassword = require('../middlewares/users');
+const checkEmptyNameAndEmail = require('../middlewares/users');
 
 usersRouter.get('/categories', findAllUsers, sendAllUsers);
 usersRouter.post(
     "/users",
     findAllUsers,
+    checkIsUserExists,
+    checkEmptyNameAndEmailAndPassword,
     createUser,
     sendUserCreated
 );
 usersRouter.get("/users/:id", findUserById, sendUserById);
 usersRouter.put(
     "/users/:id",
+    checkEmptyNameAndEmail,
     updateUser,
     sendUserUpdated
 );
