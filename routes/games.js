@@ -14,6 +14,7 @@ const checkIfCategoriesAvaliable = require('../middlewares/games');
 const checkIfUsersAreSafe = require('../middlewares/games');
 const checkIsGameExists = require('../middlewares/games');
 const { checkAuth } = require("../middlewares/auth.js");
+const checkIsVoteRequest = require('../middlewares/games.js');
 
 gamesRouter.get('/games', findAllGames, sendAllGames);
 gamesRouter.post(
@@ -30,6 +31,7 @@ gamesRouter.get("/games/:id", findGameById, sendGameById);
 gamesRouter.put(
     "/games/:id",
     findGameById,
+    checkIsVoteRequest,
     checkIfUsersAreSafe,
     checkIfCategoriesAvaliable,
     checkEmptyFields,
