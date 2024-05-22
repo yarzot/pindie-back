@@ -1,9 +1,9 @@
 const allowedCors = [
     'https://practicum.yandex.ru',
     'https://students-projects.ru',
-    'localhost:3000',
-    'localhost:3001',
-    'https://shishkina.nomoredomainswork.ru',
+    'http://localhost:3000/',
+    'http://localhost:3001/',
+    'http://shishkina.nomoredomainswork.ru',
     'https://pindie-frontend.nomoredomainswork.ru'
 ];
   
