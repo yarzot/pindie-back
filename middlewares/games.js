@@ -10,8 +10,9 @@ const findAllGames = async (req, res, next) => {
 };
 
 const checkEmptyFields = async (req, res, next) => {
-  if (req.isVoteRequest) {
+  if(req.isVoteRequest) {
     next();
+    return;
   }
   if (
     !req.body.title ||
@@ -40,8 +41,9 @@ const checkIsGameExists = async (req, res, next) => {
 };
 
 const checkIfCategoriesAvaliable = async (req, res, next) => {
-  if (req.isVoteRequest) {
+  if(req.isVoteRequest) {
     next();
+    return;
   }
   if (!req.body.categories || req.body.categories.length === 0) {
     res.headers = { "Content-Type": "application/json" };
@@ -95,12 +97,12 @@ const checkIfUsersAreSafe = async (req, res, next) => {
   }
 };
 
-const checkIsVotedRequest = async (req, res, next) => {
-  if (Object.keys(req.body).length === 1 && req.body.users) {
-    //Голосование за игру
-    req.isVoteRequest = true;
-  }
-  next();
+const checkIsVoteRequest = async (req, res, next) => {
+  // Если в запросе присылают только поле users
+if (Object.keys(req.body).length === 1 && req.body.users) {
+  req.isVoteRequest = true;
+}
+next();
 };
 
 const updateGame = async (req, res, next) => {
@@ -132,6 +134,6 @@ module.exports = {
   checkIfUsersAreSafe,
   updateGame,
   deleteGame,
-  checkIsVotedRequest,
+  checkIsVoteRequest,
   checkEmptyFields,
 };
