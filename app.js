@@ -17,9 +17,9 @@ app.use(
   cors,
   cookieParser(),
   bodyParser.json(),
-  express.static(path.join(__dirname, 'public')),
+  apiRouter,
   pagesRouter,
-  apiRouter
+  express.static(path.join(__dirname, "public"))
 );
 
 app.listen(PORT);
