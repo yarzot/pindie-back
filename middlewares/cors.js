@@ -1,7 +1,7 @@
 const allowedCors = [
     'https://practicum.yandex.ru',
     'https://students-projects.ru',
-    'https://zotov.nomoredomainswork.ru',
+    'https://zotov.nomorepartiesco.ru',
     'http://localhost:3001'
 
   ];
